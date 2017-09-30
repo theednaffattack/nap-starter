@@ -1,37 +1,45 @@
 {
   "id": "97060",
   "displayName": "Todsaporn Banjerdkit",
-  "username": "katopz",
-  "profileUrl": "https://github.com/katopz",
+  "username": "eddienaff@gmail.com",
+  "profileUrl": "https://github.com/eddienaff@gmail.com",
   "emails": [
     {
-      "value": "katopz@gmail.com"
+      "value": "eddienaff@gmail.com"
     }
   ],
   "provider": "github",
   "_json": {
-    "login": "katopz",
+    "login": "eddienaff@gmail.com",
     "id": 97060,
     "avatar_url": "https://avatars.githubusercontent.com/u/97060?v=3",
     "gravatar_id": "",
-    "url": "https://api.github.com/users/katopz",
-    "html_url": "https://github.com/katopz",
-    "followers_url": "https: //api.github.com/users/katopz/followers",
-    "following_url": "https://api.github.com/users/katopz/following{/other_user}",
-    "gists_url": "https://api.github.com/users/katopz/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/katopz/starre d{/owner}{/repo}",
-    "subscriptions_url": "https: //api.github.com/users/katopz/subscriptions",
-    "organizations_url": "https://api.github.com/users/katopz/orgs",
-    "repos_url": "https://api.github.com/users/katopz/repos",
-    "events_url": "https://api.github.c om/users/katopz/events{/privacy}",
-    "received_events_url": "https: //api.github.com/users/katopz/received_events",
+    "url": "https://api.github.com/users/eddienaff@gmail.com",
+    "html_url": "https://github.com/eddienaff@gmail.com",
+    "followers_url":
+      "https: //api.github.com/users/eddienaff@gmail.com/followers",
+    "following_url":
+      "https://api.github.com/users/eddienaff@gmail.com/following{/other_user}",
+    "gists_url":
+      "https://api.github.com/users/eddienaff@gmail.com/gists{/gist_id}",
+    "starred_url":
+      "https://api.github.com/users/eddienaff@gmail.com/starre d{/owner}{/repo}",
+    "subscriptions_url":
+      "https: //api.github.com/users/eddienaff@gmail.com/subscriptions",
+    "organizations_url":
+      "https://api.github.com/users/eddienaff@gmail.com/orgs",
+    "repos_url": "https://api.github.com/users/eddienaff@gmail.com/repos",
+    "events_url":
+      "https://api.github.c om/users/eddienaff@gmail.com/events{/privacy}",
+    "received_events_url":
+      "https: //api.github.com/users/eddienaff@gmail.com/received_events",
     "type": "User",
     "site_admin": false,
     "name": "Todsaporn Banjerdkit",
     "company": null,
-    "blog": "https://medium.com/@katopz",
+    "blog": "https://medium.com/@eddienaff@gmail.com",
     "location": "Bangkok ,Thailand",
-    "email": "katopz@gmail.com",
+    "email": "eddienaff@gmail.com",
     "hireable": null,
     "bio": "JustanotherCTO",
     "public_repos": 171,

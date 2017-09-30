@@ -1,5 +1,5 @@
 FROM node:8.1.3-alpine
-MAINTAINER Todsaporn Banjerdkit <katopz@gmail.com>
+MAINTAINER Todsaporn Banjerdkit <eddienaff@gmail.com>
 
 # Use production environments
 ENV NODE_ENV production

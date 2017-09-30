@@ -1,48 +1,99 @@
-const { guard } = require('./errors')
+const { guard } = require("./errors");
 
-const willSendVerification = async ({ mailgun_api_key, mailgun_domain, email, verification_url }) => {
-  // Guard
-  guard({ mailgun_api_key }, 'Required : mailgun_api_key, Missing .env MAILGUN_API_KEY?')
-  guard({ mailgun_domain }, 'Required : mailgun_domain, Missing .env MAILGUN_DOMAIN?')
-  guard({ email })
-  guard({ verification_url })
+const willSendVerification = async ({
+  postmark_server_api_key,
+  postmark_domain,
+  email,
+  verification_url
+}) => {
+  var postmark = require("postmark");
+  var postmarkClient = new postmark.Client(postmark_server_api_key);
+  guard(
+    { postmark_server_api_key },
+    "Required : postmark_server_api_key, Missing .env POSTMARK_SERVER_API_KEY?"
+  );
+  guard(
+    { postmark_domain },
+    "Required : postmark_domain, Missing .env POSTMARK_DOMAIN?"
+  );
+  guard({ email });
+  guard({ verification_url });
 
-  // Client
-  const MailGun = require('mailgun.js')
-  const mailgunClient = MailGun.client({
-    username: 'api',
-    key: mailgun_api_key
-  })
+  const emailOptions = {
+    From: `eddie@${postmark_domain}`,
+    To: email,
+    Subject: "Test",
+    TextBody: "Test Message" + verification_url
+  };
 
-  // Template
-  const builder = require('../templates/email-signin')
-  const data = builder(mailgun_domain, email, verification_url)
+  // postmarkClient.sendEmail({
+  //   From: `eddie@${postmark_domain}`,
+  //   To: email,
+  //   Subject: "Test",
+  //   TextBody: "Test Message"
+  // });
+
+  var messages = [
+    {
+      From: `eddie@${postmark_domain}`,
+      To: email,
+      Subject: "Message #1",
+      TextBody: "This is email number 1." + verification_url
+    },
+    {
+      From: `eddie@${postmark_domain}`,
+      To: email,
+      Subject: "Message #2",
+      TextBody: "This is email number 2." + verification_url
+    }
+  ];
 
   // Send
-  return await mailgunClient.messages.create(mailgun_domain, data)
-}
+  try {
+    // return await postmarkClient.sendEmailBatch(messages);
+    return await postmarkClient.sendEmail(emailOptions);
+  } catch (error) {
+    console.error(
+      `Unable to send via postmark: ${postmark_server_api_key} \n ${error.message}.`
+    );
+    return;
+  }
 
-const willSendPasswordReset = async ({ mailgun_api_key, mailgun_domain, email, password_reset_url, new_password_reset_url }) => {
-  // Guard
-  guard({ mailgun_api_key }, 'Required : mailgun_api_key, Missing .env MAILGUN_API_KEY?')
-  guard({ mailgun_domain }, 'Required : mailgun_domain, Missing .env MAILGUN_DOMAIN?')
-  guard({ email })
-  guard({ password_reset_url })
-  guard({ new_password_reset_url })
+  // // Send
+  // return await postmarkClient.messages.create(postmark_domain, data);
+};
 
-  // Client
-  const MailGun = require('mailgun.js')
-  const mailgunClient = MailGun.client({
-    username: 'api',
-    key: mailgun_api_key
-  })
+const willSendPasswordReset = async ({
+  postmark_server_api_key,
+  postmark_domain,
+  email,
+  verification_url
+}) => {
+  var postmark = require("postmark");
+  var postmarkClient = new postmark.Client(postmark_server_api_key);
 
-  // Template
-  const builder = require('../templates/email-forget')
-  const data = builder(mailgun_domain, email, password_reset_url, new_password_reset_url)
+  guard(
+    { postmark_server_api_key },
+    "Required : postmark_server_api_key, Missing .env POSTMARK_SERVER_API_KEY?"
+  );
+  guard(
+    { postmark_domain },
+    "Required : postmark_domain, Missing .env POSTMARK_DOMAIN?"
+  );
+  guard({ email });
+  guard({ verification_url });
 
   // Send
-  return await mailgunClient.messages.create(mailgun_domain, data)
-}
-
-module.exports = { willSendVerification, willSendPasswordReset }
+  postmarkClient.sendEmail({
+    From: "donotreply@example.com",
+    To: email,
+    Subject: "Test",
+    TextBody: "Test Message"
+  });
+  // try {
+  //   return await postmarkClient.messages.create(postmark_domain, data);
+  // } catch (error) {
+  //   console.log(error);
+  // }
+};
+module.exports = { willSendVerification, willSendPasswordReset };

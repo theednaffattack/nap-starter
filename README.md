@@ -129,7 +129,7 @@ npm run cover
 ## TODO
 - [ ] Add [HOC](https://github.com/bosung90/HOCExample) to [nap-react-native](https://github.com/rabbotio/nap-react-native)
 - [ ] Create doc separated from this `README` as github page.
-- [ ] Add [Swarm mode stack](https://gist.githubusercontent.com/katopz/e4d5cf402a53c4a002a657c4c4f67a3f/raw/077ac9057c789f49a366563941dd749827d52e3d/setup-swarm-stack.sh)
+- [ ] Add [Swarm mode stack](https://gist.githubusercontent.com/eddienaff@gmail.com/e4d5cf402a53c4a002a657c4c4f67a3f/raw/077ac9057c789f49a366563941dd749827d52e3d/setup-swarm-stack.sh)
 - [ ] Gracefully shutdown : https://github.com/heroku-examples/node-articles-nlp/blob/master/lib/server.js#L31
 - [ ] Gracefully shutdown : https://github.com/sebhildebrandt/http-graceful-shutdown
 - [ ] Don't run as root : https://github.com/jdleesmiller/docker-chat-demo/blob/master/Dockerfile

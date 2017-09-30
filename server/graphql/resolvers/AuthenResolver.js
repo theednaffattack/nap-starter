@@ -28,7 +28,7 @@ const login = async ({ context, args }) => {
       // .catch(onError(context)))
     );
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     onError(context);
   }
 };
@@ -44,7 +44,7 @@ const signup = async ({ context, args }) => {
     // .catch(onError(context))
     return user;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     onError(context);
   }
 };

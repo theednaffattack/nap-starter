@@ -50,8 +50,8 @@ const willSendVerification = async ({
 
   // Send
   try {
-    // return await postmarkClient.sendEmailBatch(messages);
-    return await postmarkClient.sendEmail(emailOptions);
+    return await postmarkClient.sendEmailBatch(messages);
+    // return await postmarkClient.sendEmail(emailOptions);
   } catch (error) {
     console.error(
       `Unable to send via postmark: ${postmark_server_api_key} \n ${error.message}.`

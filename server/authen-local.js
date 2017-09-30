@@ -33,8 +33,9 @@ const willResetPassword = async (req, email) => {
   // New user, will need verification by email
   const config = require("./config");
   const mailer = require("./mailer");
-  try {
-    const msg = await mailer.willSendPasswordReset({
+
+  const msg = await mailer
+    .willSendPasswordReset({
       // mailgun_api_key: config.mailgun_api_key,
       // mailgun_domain: config.mailgun_domain,
       postmark_server_api_key: config.postmark_server_api_key,
@@ -42,10 +43,10 @@ const willResetPassword = async (req, email) => {
       email,
       password_reset_url,
       new_password_reset_url
+    })
+    .catch(err => {
+      throw new Error(`Can't send email: ${email}, Reason : ${err.message}`);
     });
-  } catch (err) {
-    `Can't send email: ${email}, Reason : ${err.message}`;
-  }
 
   // Got msg?
   if (!msg) {

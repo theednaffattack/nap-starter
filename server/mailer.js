@@ -67,7 +67,8 @@ const willSendPasswordReset = async ({
   postmark_server_api_key,
   postmark_domain,
   email,
-  verification_url
+  password_reset_url,
+  new_password_reset_url
 }) => {
   var postmark = require("postmark");
   var postmarkClient = new postmark.Client(postmark_server_api_key);
@@ -81,19 +82,39 @@ const willSendPasswordReset = async ({
     "Required : postmark_domain, Missing .env POSTMARK_DOMAIN?"
   );
   guard({ email });
-  guard({ verification_url });
+  guard({ password_reset_url });
 
-  // Send
-  postmarkClient.sendEmail({
-    From: "donotreply@example.com",
-    To: email,
-    Subject: "Test",
-    TextBody: "Test Message"
-  });
+  // // Send
+  // postmarkClient.sendEmail({
+  //   From: "donotreply@example.com",
+  //   To: email,
+  //   Subject: "Test",
+  //   TextBody: "Test Message"
+  // });
   // try {
   //   return await postmarkClient.messages.create(postmark_domain, data);
   // } catch (error) {
   //   console.log(error);
   // }
+
+  var messages = [
+    {
+      From: `eddie@${postmark_domain}`,
+      To: email,
+      Subject: "Password Reset",
+      TextBody: "This is email number 1." + password_reset_url
+    }
+  ];
+
+  // Send
+  try {
+    return await postmarkClient.sendEmailBatch(messages);
+    // return await postmarkClient.sendEmail(emailOptions);
+  } catch (error) {
+    console.error(
+      `Unable to send via postmark: ${postmark_server_api_key} \n ${error.message}.`
+    );
+    return;
+  }
 };
 module.exports = { willSendVerification, willSendPasswordReset };
